@@ -23,21 +23,10 @@ namespace DataVisualizer
 
             var query = new StringBuilder();
 
-            IDataView data = LoadData(loadColumns, query);
+            IDataView data = MlManager.LoadData(loadColumns, connectionString, query);
             var preview = data.Preview();
         }
 
-        private static IDataView LoadData(DatabaseLoader.Column[] loadColumns, StringBuilder query)
-        {
-            var connection = new SqlConnection(connectionString);
-            var factory = DbProviderFactories.GetFactory(connection);
-
-            var context = new MLContext();
-            var loader = context.Data.CreateDatabaseLoader(loadColumns);
-            var dbSource = new DatabaseSource(factory, connectionString, query.ToString());
-
-            var data = loader.Load(dbSource);
-            return data;
-        }
+        
     }
 }
