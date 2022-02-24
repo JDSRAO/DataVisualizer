@@ -10,14 +10,14 @@ namespace DataVisualizer
 {
     public class MlManager
     {
-        public static IDataView LoadSqlData(DatabaseLoader.Column[] loadColumns, string connectionString, StringBuilder query)
+        public static IDataView LoadSqlData(DatabaseLoader.Column[] loadColumns, string connectionString, string query)
         {
             var connection = new SqlConnection(connectionString);
             var factory = DbProviderFactories.GetFactory(connection);
 
             var context = new MLContext();
             var loader = context.Data.CreateDatabaseLoader(loadColumns);
-            var dbSource = new DatabaseSource(factory, connectionString, query.ToString());
+            var dbSource = new DatabaseSource(factory, connectionString, query);
 
             var data = loader.Load(dbSource);
             return data;

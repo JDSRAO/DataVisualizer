@@ -23,7 +23,7 @@ namespace DataVisualizer
 
             var query = new StringBuilder();
 
-            IDataView data = MlManager.LoadSqlData(loadColumns, connectionString, query);
+            IDataView data = MlManager.LoadSqlData(loadColumns, connectionString, query.ToString());
             var preview = data.Preview();
         }
 
