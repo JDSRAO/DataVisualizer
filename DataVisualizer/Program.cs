@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DataVisualizer.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using System;
@@ -16,14 +17,9 @@ namespace DataVisualizer
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var loadColumns = new DatabaseLoader.Column[]
-            {
-                new DatabaseLoader.Column() { Name = "", Type = DbType.Single }
-            };
 
-            var query = new StringBuilder();
 
-            IDataView data = MlManager.LoadSqlData(loadColumns, connectionString, query.ToString());
+            IDataView data = MlManager.LoadSqlData(PostedTransactionConfiguration.Columns, connectionString, PostedTransactionConfiguration.Query);
             var preview = data.Preview();
         }
 
