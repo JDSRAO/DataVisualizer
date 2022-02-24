@@ -10,7 +10,7 @@ namespace DataVisualizer
 {
     public class MlManager
     {
-        public static IDataView LoadData(DatabaseLoader.Column[] loadColumns, string connectionString, StringBuilder query)
+        public static IDataView LoadSqlData(DatabaseLoader.Column[] loadColumns, string connectionString, StringBuilder query)
         {
             var connection = new SqlConnection(connectionString);
             var factory = DbProviderFactories.GetFactory(connection);
